@@ -1,0 +1,39 @@
+# Node modules
+/node_modules/
+
+# Build output
+/dist/
+public/build/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+vite.config.local.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage / test output
+/coverage/
+*.lcov
+
+# IDE / editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Optional: lock files if you prefer not to commit them
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

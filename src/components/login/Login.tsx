@@ -6,7 +6,9 @@ import "./Login.css";
 const Login: React.FC = () => {
   const { email, setEmail, password, setPassword, handleSubmit } = useLoginController();
 
-    return (
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  return (
     <div className="login-container">
       <motion.form
         onSubmit={handleSubmit((success) => {

@@ -11,16 +11,13 @@ export const useLoginController = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+    const VITE_API_URL = import.meta.env.VITE_API_URL;
     try {
-      const response = await axios.post("https://your-dotnet-service.com/api/login", {
+      const response = await axios.post(`${VITE_API_URL}/login`, {
         email,
         password,
       });
-
-      // Assuming your service returns { success: true, token: "..." }
       if (response.data.success) {
-        // You can store token in localStorage if needed
         localStorage.setItem("authToken", response.data.token);
         callback?.(true);
       } else {

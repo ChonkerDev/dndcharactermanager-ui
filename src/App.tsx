@@ -1,8 +1,14 @@
 import './App.css'
-import Login from "./components/login/Login";
+import AuthProvider from './components/AuthProvider';
+import RouteContainer from './components/RouteContainer';
 
-const App: React.FC = () => {
-  return <Login />;
-};
+
+function App() {
+  return (
+    <AuthProvider>
+      <RouteContainer />
+    </AuthProvider >
+  )
+}
 
 export default App;

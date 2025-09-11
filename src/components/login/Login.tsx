@@ -1,18 +1,20 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useLoginController } from "./LoginController";
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
+import { useAuth } from '../AuthProvider';
 
-const Login: React.FC = () => {
-  const { email, setEmail, password, setPassword, handleSubmit } = useLoginController();
+function Login() {
+  const { email, setEmail, password, setPassword, handleSubmit, error, loading } = useLoginController();
+  const navigate = useNavigate();
 
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   return (
     <div className="login-container">
       <motion.form
         onSubmit={handleSubmit((success) => {
-          if (success) alert("Login successful!");
+          if (success) {
+            navigate('/');
+          }
         })}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,8 +35,12 @@ const Login: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
+          required
+          minLength={8}
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Password must be at least 8 characters and include a number, a lowercase, and an uppercase letter."
         />
-        {error && <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>}
+        {error && <div className="login-error">{error}</div>}
         <motion.button
           type="submit"
           whileHover={{ scale: 1.05 }}
